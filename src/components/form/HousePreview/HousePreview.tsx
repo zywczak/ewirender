@@ -17,7 +17,6 @@ interface HousePreviewProps {
   onCustomImageUploaded?: () => void;
   onModeChange?: () => void;
   onColourLockChange?: (locked: boolean) => void;
-  onCustomImageChange?: (image: string | null) => void;
   onGeneratedImageChange?: (image: string | null) => void;
   onIsGeneratingChange?: (v: boolean) => void;
 }
@@ -32,7 +31,6 @@ const HousePreview: React.FC<HousePreviewProps> = ({
   onCustomImageUploaded,
   onColourLockChange,
   onModeChange,
-  onCustomImageChange,
   onGeneratedImageChange,
   onIsGeneratingChange,
 }) => {
@@ -49,10 +47,6 @@ const HousePreview: React.FC<HousePreviewProps> = ({
     open: false, 
     message: '' 
   });
-
-  React.useEffect(() => {
-    onCustomImageChange?.(customImage);
-  }, [customImage]);
 
   React.useEffect(() => {
     onGeneratedImageChange?.(generatedImage);

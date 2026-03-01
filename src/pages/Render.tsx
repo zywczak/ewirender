@@ -18,7 +18,6 @@ const Render: React.FC = () => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [selectedColourImage, setSelectedColourImage] = useState<string>("");
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [customHouseImage, setCustomHouseImage] = useState<string | null>(null);
   const [generatedHouseImage, setGeneratedHouseImage] = useState<string | null>(null);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
 

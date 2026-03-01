@@ -10,7 +10,6 @@ interface FormProps {
   selectedHouseType: number;
   setSelectedColourImage: (image: string) => void;
   modeValue: boolean;
-  setCustomHouseImage: (img: string | null) => void;
   setGeneratedHouseImage: (img: string | null) => void;
   setIsGeneratingImage: (v: boolean) => void;
 }
@@ -24,7 +23,6 @@ const Form = ({
   selectedHouseType,
   setSelectedColourImage,
   modeValue,
-  setCustomHouseImage,
   setGeneratedHouseImage,
   setIsGeneratingImage,
 }: FormProps) => {
@@ -76,7 +74,6 @@ const Form = ({
         selectedHouseType={selectedHouseType}
         clearColourSelection={clearColourSelection}
         setColourLocked={setColourLocked}
-        setCustomHouseImage={setCustomHouseImage}
         setGeneratedHouseImage={setGeneratedHouseImage}
         setIsGeneratingImage={setIsGeneratingImage}
       />
@@ -100,7 +97,6 @@ const PreviewSection = ({
   selectedHouseType,
   clearColourSelection,
   setColourLocked,
-  setCustomHouseImage,
   setGeneratedHouseImage,
   setIsGeneratingImage,
 }: {
@@ -112,7 +108,6 @@ const PreviewSection = ({
   selectedHouseType: number;
   clearColourSelection: () => void;
   setColourLocked: React.Dispatch<React.SetStateAction<boolean>>;
-  setCustomHouseImage: (img: string | null) => void;
   setGeneratedHouseImage: (img: string | null) => void;
   setIsGeneratingImage: (v: boolean) => void;
 }) => (
@@ -137,7 +132,6 @@ const PreviewSection = ({
       onCustomImageUploaded={clearColourSelection}
       onColourLockChange={setColourLocked}
       onModeChange={clearColourSelection}
-      onCustomImageChange={setCustomHouseImage}
       onGeneratedImageChange={setGeneratedHouseImage}
       onIsGeneratingChange={setIsGeneratingImage}
     />
