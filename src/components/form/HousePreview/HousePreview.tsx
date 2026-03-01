@@ -144,15 +144,6 @@ const HousePreview: React.FC<HousePreviewProps> = ({
 
     const sourceUrl = sessionStorage.getItem("compositeHouseImage") || compositeImage || customImage!;
 
-    console.log("[HousePreview] handleColourSelection:", {
-      hasCustomImage: !!customImage,
-      hasCompositeImage: !!compositeImage,
-      hasSessionStorage: !!sessionStorage.getItem("compositeHouseImage"),
-      sourceUrlPreview: sourceUrl.substring(0, 100) + "...",
-      colourValue,
-      optionId,
-    });
-
     colourAbortControllerRef.current?.abort();
     colourAbortControllerRef.current = null;
 
@@ -239,7 +230,10 @@ const HousePreview: React.FC<HousePreviewProps> = ({
   }, []);
 
   React.useEffect(() => {
-    if (!selectedColourId) return;
+    if (!selectedColourId) {
+      skipGenerateRef.current = false;
+      return;
+    }
     if (skipGenerateRef.current) { skipGenerateRef.current = false; return; }
     if (!customImage && !compositeImage) return;
     handleColourSelection((selectedColour as string) || String(selectedColourId), selectedColourId);
@@ -320,12 +314,20 @@ const HousePreview: React.FC<HousePreviewProps> = ({
   const previewImage = useMemo(() => findBestMatchingImage(selectedOptions), [selectedOptions]);
   const currentImage = generatedImage || customImage || previewImage;
 
+  let src = "";
+
+  if (customImage || generatedImage) {
+    src = currentImage || "";
+  } else if (currentImage) {
+    src = adress + currentImage;
+  }
+
   // ─── Render ────────────────────────────────────────────────────────────────
 
   return (
     <Box sx={{ position: "relative" }}>
       <PreviewImage
-        src={adress + currentImage || ""}
+        src={src}
         isMobile={isMobile}
         isGenerating={isGeneratingImage}
         showRemoveButton={!!(customImage || generatedImage)}

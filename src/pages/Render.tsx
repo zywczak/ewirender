@@ -20,6 +20,7 @@ const Render: React.FC = () => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [generatedHouseImage, setGeneratedHouseImage] = useState<string | null>(null);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
+  const [selectedColorJson, setSelectedColorJson] = useState<string>("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -112,6 +113,7 @@ const Render: React.FC = () => {
                 modeValue={modeValue}
                 setGeneratedHouseImage={setGeneratedHouseImage}
                 setIsGeneratingImage={setIsGeneratingImage}
+                setSelectedColorJson={setSelectedColorJson}
               />
             </Box>
 
@@ -149,6 +151,7 @@ const Render: React.FC = () => {
         generatedHouseImage={generatedHouseImage}
         renderValue={renderValue}
         selectedHouseType={selectedHouseType}
+        selectedColorJson={selectedColorJson || null}
       />
     </>
   );

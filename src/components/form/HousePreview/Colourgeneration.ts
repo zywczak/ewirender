@@ -35,14 +35,12 @@ const dataUrlToBlob = (dataUrl: string): Blob => {
 const fetchImageBlob = async (sourceUrl: string, signal: AbortSignal): Promise<Blob> => {
   if (sourceUrl.startsWith("data:")) {
     const blob = dataUrlToBlob(sourceUrl);
-    console.log("[generateColour] Converted data URL to blob:", blob.size);
     return blob;
   }
 
   const res = await fetch(sourceUrl, { signal });
   if (!res.ok) throw new Error(`Failed to fetch source image: ${res.status}`);
   const blob = await res.blob();
-  console.log("[generateColour] Fetched blob from URL:", blob.size);
   return blob;
 };
 
@@ -57,12 +55,6 @@ const buildFormData = (
     lastModified: Date.now(),
   });
 
-  console.log("[generateColour] Created file:", {
-    name: file.name,
-    size: file.size,
-    type: file.type,
-  });
-
   const formData = new FormData();
   formData.append("file", file);
   formData.append("mode", mode.toUpperCase());
@@ -73,15 +65,6 @@ const buildFormData = (
   }
   
   formData.append("colour_code", colourValue ?? "");
-
-  console.log("[generateColour] FormData entries:");
-  for (const [key, value] of formData.entries()) {
-    if (value instanceof File) {
-      console.log(`  ${key}: File(name=${value.name}, size=${value.size}, type=${value.type})`);
-    } else {
-      console.log(`  ${key}: ${value}`);
-    }
-  }
 
   return formData;
 };
@@ -110,14 +93,6 @@ export const generateColour = async (
   imageBlob = await compressImage(imageBlob);
 
   if (imageBlob.size === 0) throw new Error("Image blob is empty after compression");
-
-  console.log("[generateColour] Before sending:", {
-    blobSize: imageBlob.size,
-    blobType: imageBlob.type,
-    mode: mode.toUpperCase(),
-    ...(mode === "strict" && { material: renderType === "brick" ? "BRICK_SLIP" : "RENDER" }),
-    colourValue,
-  });
 
   const formData = buildFormData(imageBlob, mode, renderType, colourValue);
 

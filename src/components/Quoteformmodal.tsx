@@ -240,7 +240,7 @@ export default function QuoteFormModal({
       houseType,
       ...trackingParams,
     };
-    console.log("Contact form payload:", payload);
+    console.log(payload)
 
     setLoading(true);
     try {

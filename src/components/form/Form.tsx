@@ -12,6 +12,7 @@ interface FormProps {
   modeValue: boolean;
   setGeneratedHouseImage: (img: string | null) => void;
   setIsGeneratingImage: (v: boolean) => void;
+  setSelectedColorJson: (jsonValue: string) => void;
 }
 
 type RenderType = "render" | "brick";
@@ -25,6 +26,7 @@ const Form = ({
   modeValue,
   setGeneratedHouseImage,
   setIsGeneratingImage,
+  setSelectedColorJson,
 }: FormProps) => {
   const [selectedColour, setSelectedColour] = useState<string>("");
   const [selectedColourId, setSelectedColourId] = useState<number | null>(null);
@@ -38,18 +40,21 @@ const Form = ({
     setSelectedColour(value);
     setSelectedColourId(id);
     setSelectedColourImage(image);
+    setSelectedColorJson(value);
   };
 
   const clearColourSelection = () => {
     setSelectedColour("");
     setSelectedColourId(null);
     setSelectedColourImage("");
+    setSelectedColorJson("");
   };
 
   useEffect(() => {
     setSelectedColour("");
     setSelectedColourId(null);
     setSelectedColourImage("");
+    setSelectedColorJson("");
   }, [isBrickSlips]);
 
   return (
