@@ -29,16 +29,16 @@ const Options: React.FC<OptionsProps> = ({
     >
       {/* Switch 1 */}
       <Switch
-        leftLabel="RENDER"
-        rightLabel="BRICK SLIPS"
+        leftLabel="BRICK SLIPS"
+        rightLabel="RENDER"
         value={renderValue}
         onChange={setRenderValue}
       />
 
       {/* Switch 2 */}
       <Switch
-        leftLabel="STRICT"
-        rightLabel="CREATIVE"
+        leftLabel="CREATIVE"
+        rightLabel="STRICT"
         value={modeValue}
         onChange={setModeValue}
       />

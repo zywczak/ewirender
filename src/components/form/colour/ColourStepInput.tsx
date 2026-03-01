@@ -128,11 +128,12 @@ const ColourInput: React.FC<InputProps> = ({
       >
         {currentPageColors.map((color, index) => {
           const isSelected = value === color.value;
+          const globalIndex = startIndex + index;
 
           return (
             <Box
               key={color.value}
-              onClick={disabled ? undefined : () => handleSelect(color, index)}
+              onClick={disabled ? undefined : () => handleSelect(color, globalIndex)}
               role="button"
               aria-disabled={disabled}
               sx={{

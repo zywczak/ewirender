@@ -190,6 +190,7 @@ const HousePreview: React.FC<HousePreviewProps> = ({
     colourAbortControllerRef.current?.abort();
     colourAbortControllerRef.current = null;
     setIsGeneratingImage(false);
+    setGeneratedImage(null); // Show original uploaded image
     skipGenerateRef.current = true;
   }, [mode, renderType]);
 
@@ -206,11 +207,12 @@ const HousePreview: React.FC<HousePreviewProps> = ({
       colourAbortControllerRef.current?.abort();
       colourAbortControllerRef.current = null;
       setIsGeneratingImage(false);
+      setGeneratedImage(null); // Show original uploaded image
       skipGenerateRef.current = true;
-      if (customImage || compositeImage) onModeChange?.();
+      onModeChange?.(); // Clear colour selection
     }
     prevModeRef.current = mode;
-  }, [mode, onModeChange, customImage, compositeImage]);
+  }, [mode, onModeChange]);
 
   React.useEffect(() => {
     if (customImage === null) clearImageCache();

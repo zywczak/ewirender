@@ -66,7 +66,12 @@ const buildFormData = (
   const formData = new FormData();
   formData.append("file", file);
   formData.append("mode", mode.toUpperCase());
-  formData.append("material", renderType === "brick" ? "BRICK_SLIP" : "RENDER");
+  
+  // material only for strict mode
+  if (mode === "strict") {
+    formData.append("material", renderType === "brick" ? "BRICK_SLIP" : "RENDER");
+  }
+  
   formData.append("colour_code", colourValue ?? "");
 
   console.log("[generateColour] FormData entries:");
@@ -110,7 +115,7 @@ export const generateColour = async (
     blobSize: imageBlob.size,
     blobType: imageBlob.type,
     mode: mode.toUpperCase(),
-    material: renderType === "brick" ? "BRICK_SLIP" : "RENDER",
+    ...(mode === "strict" && { material: renderType === "brick" ? "BRICK_SLIP" : "RENDER" }),
     colourValue,
   });
 
