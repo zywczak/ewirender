@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Slide, Typography } from "@mui/material";
 import EwiproLogo from "../../assets/EWI-Pro-Render-Systems.png";
 import OPTION_IDS from "../form/colour/optionIds";
+import adress from "../../api/adress";
 
 interface HouseTypeProps {
   selectedHouseType: number;
@@ -160,7 +161,7 @@ const HouseType: React.FC<HouseTypeProps> = ({
           >
             <Box sx={{ width: "100%", height: "100%" }}>
               <img
-                src={colorImage}
+                src={adress + colorImage}
                 alt="Color"
                 style={{
                   width: "100%",

@@ -8,6 +8,7 @@ import {
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { BRICK_SLIPS_COLOURS, RENDER_COLOURS } from "./Colourdata";
+import adress from "../../../api/adress";
 
 export interface InputProps {
   value: string | number;
@@ -149,7 +150,7 @@ const ColourInput: React.FC<InputProps> = ({
               }}
             >
               <img
-                src={color.image}
+                src={adress + color.image}
                 alt={color.label}
                 style={{
                   width: "100%",

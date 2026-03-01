@@ -6,6 +6,7 @@ import { redrawCanvas, buildCompositeForBackend, Point } from "./Drawingcanvas";
 import { generateColour, getCacheKey, RenderType, ModeType } from "./Colourgeneration";
 import PreviewImage from "./Previewimage";
 import PreviewActions from "./Previewactions";
+import adress from "../../../api/adress";
 
 interface HousePreviewProps {
   isMobile?: boolean;
@@ -324,7 +325,7 @@ const HousePreview: React.FC<HousePreviewProps> = ({
   return (
     <Box sx={{ position: "relative" }}>
       <PreviewImage
-        src={currentImage || ""}
+        src={adress + currentImage || ""}
         isMobile={isMobile}
         isGenerating={isGeneratingImage}
         showRemoveButton={!!(customImage || generatedImage)}
