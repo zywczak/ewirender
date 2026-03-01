@@ -29,11 +29,11 @@ export const findBestMatchingImage = (selectedOptions: number[]): string | null 
 export const findFileToSend = (selectedOptions: number[]): string | null => {
   const houseType = getHouseTypeFromOptions(selectedOptions);
 
-  if (houseType === OPTION_IDS.HOUSE.DETACHED) return "/media/detacheddefault.jpg";
+  if (houseType === OPTION_IDS.HOUSE.DETACHED) return "../../assets/detacheddefault.jpg";
 
-  if (houseType === OPTION_IDS.HOUSE.SEMI_DETACHED) return "/media/semidetacheddefault.jpg";
+  if (houseType === OPTION_IDS.HOUSE.SEMI_DETACHED) return "../../assets/semidetacheddefault.jpg";
 
-  if (houseType === OPTION_IDS.HOUSE.TERRACED) return "/media/terraceddefault.jpg";
+  if (houseType === OPTION_IDS.HOUSE.TERRACED) return "../../assets/terraceddefault.jpg";
 
   return null;
 };
